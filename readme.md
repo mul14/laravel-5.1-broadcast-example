@@ -5,7 +5,7 @@ Install dan aktifkan redis server.
 Install package yang dibutuhkan NodeJS
 
 ```bash
-npm install
+npm install --production
 ```
 
 Jalankan socket.io server
@@ -24,6 +24,6 @@ Buka browser [http://localhost:8000](http://localhost:8000)
 
 Buka halaman admin [http://localhost:8000/admin](http://localhost:8000/admin)
 
-Coba lakukan pendaftaran, lalu lihat di admin.
+Coba lakukan pendaftaran, lalu lihat yang terjadi pada halaman admin.
 
 Demo ini tidak menyentuh database sama sekali. Di `App\User::register` hanya mengembalikan User object.
