@@ -1,28 +1,33 @@
-var app = require('express')();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
-var redis = require('redis');
+const util  = require('util');
+const app   = require('express')();
+const http  = require('http').Server(app);
+const io    = require('socket.io')(http);
+const redis = require('redis');
 
-server.listen(9090);
+const host = process.env.HOST || '0.0.0.0';
+const port = process.env.PORT || 9090;
+
+http.listen(port, host);
+util.log('Listening at http://' + host + ':' + port);
 
 io.on('connection', function (socket) {
 
-    console.log("new client connected");
+  util.log("New client connected");
 
-    var redisClient = redis.createClient();
+  var redisClient = redis.createClient();
 
-    redisClient.subscribe('notification');
+  redisClient.subscribe('notification');
 
-    redisClient.on('message', function (channel, message) {
-        console.log("new message in queue " + message + "channel");
+  redisClient.on('message', function (channel, message) {
+    util.log("New message in queue " + message + "channel");
 
-        message = JSON.parse(message);
+    message = JSON.parse(message);
 
-        socket.emit(channel, message.data);
-    });
+    socket.emit(channel, message.data);
+  });
 
-    socket.on('disconnect', function () {
-        redisClient.quit();
-    });
+  socket.on('disconnect', function () {
+    redisClient.quit();
+  });
 
 });
