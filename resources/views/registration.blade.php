@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Sign up</title>
 </head>
 <body>
 
@@ -14,12 +14,14 @@
 
   {!! csrf_field() !!}
 
+  @php($random_string = str_random(6))
+
   <p>
-    Name: <input type="text" name="name" value="demo" />
+    Name: <input type="text" name="name" value="{{ $random_string }}" />
   </p>
 
   <p>
-    Email: <input type="email" name="email" value="demo@example.com" />
+    Email: <input type="email" name="email" value="{{ $random_string }}@example.com" />
   </p>
 
   <p>
