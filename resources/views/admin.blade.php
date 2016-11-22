@@ -6,9 +6,10 @@
 
   <style>
     #activities {
-      background: #c9c9c9;
+      background: #f9f9f9;
       padding: 4px 8px;
       margin-bottom: 4px;
+      font-family: monospace;
     }
   </style>
 </head>
@@ -16,7 +17,9 @@
 
 <h1>Admin Dashboard</h1>
 
-<div id="activities">Activities</div>
+<h2>Activities</h2>
+
+<div id="activities"></div>
 
 <script src="//cdn.socket.io/socket.io-1.4.5.js"></script>
 <script>
@@ -31,7 +34,7 @@
     var act = document.getElementById('activities');
     var date = new Date();
     var log = document.createElement('div');
-    log.innerHTML = date.getTime() + ': ' + user.name + '(' + user.email + ') telah terdafar.';
+    log.innerHTML = date.toISOString() + ': ' + user.name + ' (' + user.email + ') telah terdafar.';
     act.appendChild(log);
   });
 </script>
