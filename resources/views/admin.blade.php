@@ -18,7 +18,7 @@
 
 <div id="activities">Activities</div>
 
-<script src="//cdn.socket.io/socket.io-1.3.5.js"></script>
+<script src="//cdn.socket.io/socket.io-1.4.5.js"></script>
 <script>
   var socket = io('http://localhost:9090');
 
